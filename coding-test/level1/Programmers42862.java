@@ -26,13 +26,10 @@ public class Programmers42862 {
             if(check) list.add(lost[i]);
         }
 
-        int last = 0;
-
         for(int i = 0; i < list.size(); i++) {
             for(int j = 0; j < reserve.length; j++) {
-                if(reserve[j] != last && reserve[j] == list.get(i)-1 || reserve[j] == list.get(i)+1) {
+                if(reserve[j] != -1 && reserve[j] == list.get(i)-1 || reserve[j] == list.get(i)+1) {
                     reserve[j] = -1;
-                    last = reserve[j];
                     count++;
                     break;
                 }
