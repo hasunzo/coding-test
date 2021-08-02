@@ -15,11 +15,6 @@ public class Programmers82612 {
     public long solution(int price, int money, int count) {
         long answer = price + (price*count);
         answer = (answer * count)/2 - money ;
-
-        if(answer > 0) {
-            return answer;
-        } else {
-            return 0;
-        }
+        return (answer > 0) ? answer : 0;
     }
 }
