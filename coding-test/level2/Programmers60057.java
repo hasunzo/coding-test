@@ -33,36 +33,40 @@ public class Programmers60057 {
                 }
             }
 
-            // 반복 문자열
-            String repeat = "";
+            int strlength = getStringLength(list);
 
-            // 반복 횟수
-            int repeatNum = 1;
-
-            // 문자열 길이
-            int strlength = 0;
-
-            Iterator itr = list.iterator();
-            while (itr.hasNext()){
-                String compareStr = (String) itr.next();
-
-                // 앞 문자열 (repeat)과 같으면 횟수 (repeatNum)을 늘려준다.
-                if (repeat.equals(compareStr)) {
-                    repeatNum++;
-
-                // 다르면 반복횟수(자리수) + 반복 문자열 계산해서 문자열 길이 합산
-                } else {
-                    strlength += (repeatNum == 1) ? repeat.length() : (Integer.toString(repeatNum) + repeat).length();
-                    repeat = compareStr;
-                    repeatNum = 1;
-                }
-            }
-            strlength += (repeatNum == 1) ? repeat.length() : (Integer.toString(repeatNum) + repeat).length();
             if (answer == 0 || answer > strlength) {
                 answer = strlength;
             }
         }
 
         return answer;
+    }
+
+    private int getStringLength(List<String> stringList) {
+        String targetStr = "";      // 비교 대상
+        int numOfRepetitions = 1;   // 반복 횟수
+        int strLength = 0;          // 문자열 길이
+
+        Iterator itr = stringList.iterator();
+
+        while (itr.hasNext()) {
+            String compareStr = (String) itr.next();
+
+            if (targetStr.equals(compareStr)) {
+                numOfRepetitions++;
+            } else {
+                strLength += getstrLength(targetStr, numOfRepetitions);
+                targetStr = compareStr;
+                numOfRepetitions = 1;
+            }
+            strLength += getstrLength(targetStr, numOfRepetitions);
+        }
+
+        return strLength;
+    }
+
+    private int getstrLength(String tartgetStr, int numOfRepetitions) {
+        return (numOfRepetitions == 1) ? tartgetStr.length() : (Integer.toString(numOfRepetitions) + tartgetStr).length();
     }
 }
